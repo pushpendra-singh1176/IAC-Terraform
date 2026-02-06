@@ -8,11 +8,6 @@ variable "instance_type" {
   type        = string
 }
 
-variable "ami_id" {
-  description = "AMI ID"
-  type        = string
-}
-
 variable "key_name" {
   description = "EC2 key pair name"
   type        = string

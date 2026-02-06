@@ -41,11 +41,11 @@ resource "aws_security_group" "web_sg" {
 # EC2 Instance
 ############################
 resource "aws_instance" "web_server" {
-  ami                    = var.ami_id
+  ami                    = data.aws_ssm_parameter.ubuntu.value
   instance_type          = var.instance_type
   key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [aws_security_group.web_sg.id]
-
+  user_data = file("${path.module}/scripts.sh")
   tags = {
     Name = "Terraform-EC2"
     Env  = "Dev"
